@@ -55,7 +55,6 @@ function makeGrid(rows = 16, cols = 16) {
   }
 }
 
-
 function setUseColor(e) {
   e.target.style.backgroundColor = getRandomColour();
 }
@@ -63,6 +62,10 @@ function setUseColor(e) {
 function setUseGray(e) {
   let currentColor = e.target.style.backgroundColor;
   e.target.style.backgroundColor = changeAlpha(currentColor, 0.1);
+}
+
+function setUseColorPicker(e) {
+  e.target.style.backgroundColor = document.querySelector("#colorWell").value;
 }
 
 function initGrid(useColor) {
@@ -73,9 +76,9 @@ function initGrid(useColor) {
       square.removeEventListener("mouseover", setUseGray);
       square.addEventListener("mouseover", setUseColor);
     } else if (!useColor) {
-      square.removeEventListener("mouseover", setUseColorPicker); 
+      square.removeEventListener("mouseover", setUseColorPicker);
       square.removeEventListener("mouseover", setUseColor);
-      square.addEventListener("mouseover", setUseGray); 
+      square.addEventListener("mouseover", setUseGray);
     }
   });
 }
@@ -97,14 +100,13 @@ function deleteGrid() {
 
 resetButton.addEventListener("click", clearGrid);
 
+grayBtn.addEventListener("click", () => {
+  useColor = false;
+  initGrid(useColor);
+});
+
 colorBtn.addEventListener("click", () => {
-  if (useColor) {
-    useColor = false;
-    colorBtn.textContent = "Switch to Colour";
-  } else {
-    useColor = true;
-    colorBtn.textContent = "Switch to Gray-scale";
-  }
+  useColor = true;
   initGrid(useColor);
 });
 
@@ -155,11 +157,7 @@ function updateColor() {
   const squares = document.querySelectorAll(".grid-item");
   squares.forEach((square) => {
     if (square) {
-      square.addEventListener("mouseover", setUseColorPicker);   
+      square.addEventListener("mouseover", setUseColorPicker);
     }
   });
-}
-
-function setUseColorPicker(e) {
-  e.target.style.backgroundColor = document.querySelector("#colorWell").value;
 }

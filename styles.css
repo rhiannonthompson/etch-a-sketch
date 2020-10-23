@@ -89,7 +89,7 @@ button {
 }
 
 .color-picker {
-  height: 4.0rem;
+  height: 4rem;
   width: 7.5rem;
   border-radius: 0.5rem;
 }
@@ -103,7 +103,7 @@ button {
   font-weight: 500;
   position: relative;
   top: 10px;
-} 
+}
 
 /*LAYOUT*/
 
@@ -218,7 +218,5 @@ input[type="range"]:active + output {
   display: block;
   transform: translateX(-50%);
 }
-
-
 
 /*END*/
